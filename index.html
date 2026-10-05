@@ -6,7 +6,6 @@
 <title>Pour Dodo ❤️</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -21,9 +20,9 @@ overflow:hidden;
 }
 
 .screen{
-display:none;
 width:100%;
 height:100vh;
+display:none;
 flex-direction:column;
 justify-content:center;
 align-items:center;
@@ -46,13 +45,13 @@ line-height:1.8;
 font-size:1.2rem;
 }
 
-button{
+.btn{
+margin-top:30px;
 padding:15px 35px;
 border:none;
 border-radius:50px;
 cursor:pointer;
 font-size:1.1rem;
-margin-top:20px;
 }
 
 .nextBtn{
@@ -60,16 +59,8 @@ background:#ff4d6d;
 color:white;
 }
 
-#yesBtn{
-background:#39d353;
-color:white;
-font-size:1.3rem;
-}
-
-#noBtn{
-background:#ff4d6d;
-color:white;
-position:absolute;
+.nextBtn:hover{
+transform:scale(1.1);
 }
 
 .buttons{
@@ -78,19 +69,41 @@ width:500px;
 height:250px;
 }
 
+#yesBtn{
+background:#39d353;
+color:white;
+font-size:1.4rem;
+padding:18px 50px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+}
+
+#noBtn{
+background:#ff4d6d;
+color:white;
+position:absolute;
+left:250px;
+top:80px;
+padding:10px 20px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+}
+
 .memory{
 background:rgba(255,255,255,0.1);
 padding:20px;
-border-radius:20px;
 margin:10px;
-width:320px;
+border-radius:20px;
+width:350px;
 }
 
 .heart{
 position:fixed;
-top:-50px;
 color:red;
 animation:fall linear infinite;
+top:-50px;
 }
 
 @keyframes fall{
@@ -98,7 +111,6 @@ to{
 transform:translateY(110vh);
 }
 }
-
 </style>
 </head>
 
@@ -110,8 +122,8 @@ transform:translateY(110vh);
 
 <p>J'ai quelque chose à te dire...</p>
 
-<button class="nextBtn" onclick="nextScreen(2)">
-Continuer ❤️
+<button class="btn nextBtn" onclick="nextScreen(2)">
+Next ➜
 </button>
 
 </div>
@@ -129,15 +141,18 @@ Je n'aime pas quand on se dispute, encore moins quand c'est avec toi.
 <br><br>
 
 Tu occupes une place énorme dans ma vie.
+Même quand je fais le fier, la vérité c'est que ton sourire, ta présence et nos moments ensemble comptent beaucoup pour moi.
 <br><br>
 
 Je ne suis pas parfait, je fais des erreurs et parfois je dis ou je fais des choses que je regrette.
 <br><br>
 
 Mais ce que je ressens pour toi est réel.
+Et je ne veux pas qu'une dispute efface tous nos souvenirs, nos délires et tous les beaux moments qu'on a construits ensemble.
 <br><br>
 
 Aujourd'hui je veux simplement te dire pardon.
+Pardon pour ce qui t'a blessée.
 <br><br>
 
 Et si tu me laisses une chance,
@@ -147,7 +162,7 @@ je te promets de faire mieux.
 Je t'aime Dodo ❤️
 </p>
 
-<button class="nextBtn" onclick="nextScreen(3)">
+<button class="btn nextBtn" onclick="nextScreen(3)">
 Continuer ❤️
 </button>
 
@@ -175,7 +190,12 @@ Non
 
 <h1>Merci mon cœur ❤️</h1>
 
-<p>Quelques-uns de nos plus beaux souvenirs...</p>
+<p>
+Maintenant laisse-moi te rappeler
+quelques-uns de nos plus beaux souvenirs...
+</p>
+
+<br><br>
 
 <div class="memory">
 😍 Le plus beau sourire du monde
@@ -203,31 +223,27 @@ je choisirai toujours de me battre pour nous ❤️
 <script>
 
 function nextScreen(num){
-
 document.querySelectorAll('.screen').forEach(screen=>{
 screen.classList.remove('active');
 });
 
 document.getElementById('screen'+num).classList.add('active');
-
 }
 
 function showFinal(){
-
 nextScreen(4);
 createHearts();
-
 }
 
 const noBtn=document.getElementById("noBtn");
 
 noBtn.addEventListener("mouseover",()=>{
 
-const x=Math.random()*400;
-const y=Math.random()*180;
+const randomX=Math.random()*400;
+const randomY=Math.random()*180;
 
-noBtn.style.left=x+"px";
-noBtn.style.top=y+"px";
+noBtn.style.left=randomX+"px";
+noBtn.style.top=randomY+"px";
 
 });
 
@@ -253,7 +269,6 @@ heart.remove();
 },300);
 
 }
-
 </script>
 
 </body>
