@@ -1,10 +1,11 @@
+HTML
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pour Dodo ❤️</title>
-
+ 
 <style>
 body{
 margin:0;
@@ -14,7 +15,7 @@ color:white;
 text-align:center;
 overflow:hidden;
 }
-
+ 
 .page{
 display:none;
 height:100vh;
@@ -23,11 +24,11 @@ justify-content:center;
 align-items:center;
 flex-direction:column;
 }
-
+ 
 .active{
 display:flex;
 }
-
+ 
 button{
 padding:15px 30px;
 border:none;
@@ -36,30 +37,55 @@ font-size:18px;
 cursor:pointer;
 margin-top:20px;
 }
-
+ 
 .next{
 background:#ff4d6d;
 color:white;
 }
-
+ 
 #yes{
 background:#39d353;
 color:white;
 }
-
+ 
 #no{
 background:#ff4d6d;
 color:white;
 position:absolute;
 }
-
+ 
+.gallery{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
+margin-top:30px;
+}
+ 
+.photo{
+width:220px;
+}
+ 
+.photo img{
+width:220px;
+height:300px;
+object-fit:cover;
+border-radius:15px;
+box-shadow:0 0 15px rgba(255,255,255,0.3);
+}
+ 
+.caption{
+margin-top:10px;
+font-weight:bold;
+}
+ 
 .heart{
 position:fixed;
 top:-20px;
 font-size:25px;
 animation:fall linear infinite;
 }
-
+ 
 @keyframes fall{
 to{
 transform:translateY(110vh);
@@ -67,9 +93,9 @@ transform:translateY(110vh);
 }
 </style>
 </head>
-
+ 
 <body>
-
+ 
 <div class="page active" id="p1">
 <h1>Dodo ❤️</h1>
 <p>J'ai quelque chose à te dire...</p>
@@ -77,10 +103,10 @@ transform:translateY(110vh);
 Continuer ❤️
 </button>
 </div>
-
+ 
 <div class="page" id="p2">
 <h1>Mon cœur ❤️</h1>
-
+ 
 <p style="max-width:700px;line-height:1.8;">
 Je sais que ces derniers jours n'ont pas été faciles.
 <br><br>
@@ -94,82 +120,118 @@ Aujourd'hui je veux simplement te dire pardon.
 <br><br>
 Je t'aime Dodo ❤️
 </p>
-
+ 
 <button class="next" onclick="showPage(3)">
 Continuer ❤️
 </button>
 </div>
-
+ 
 <div class="page" id="p3">
-
+ 
 <h1>Est-ce que tu acceptes mes excuses ? 🥺❤️</h1>
-
+ 
 <button id="yes" onclick="showPage(4)">
 OUI ❤️
 </button>
-
+ 
 <button id="no">
 Non
 </button>
-
+ 
 </div>
-
+ 
 <div class="page" id="p4">
-
+ 
 <h1>Merci mon cœur ❤️</h1>
-
-<h2>
+ 
+<p>
+Quelques-uns de nos plus beaux souvenirs...
+</p>
+ 
+<div class="gallery">
+ 
+<div class="photo">
+<img src="photo1.jpg">
+<div class="caption">
+Le plus beau sourire du monde 😍❤️
+</div>
+</div>
+ 
+<div class="photo">
+<img src="photo2.jpg">
+<div class="caption">
+Stormy Together 🌩️❤️
+</div>
+</div>
+ 
+<div class="photo">
+<img src="photo3.jpg">
+<div class="caption">
+Toi et moi ✨💕
+</div>
+</div>
+ 
+<div class="photo">
+<img src="photo4.jpg">
+<div class="caption">
+Ma petite fille 👸❤️
+</div>
+</div>
+ 
+</div>
+ 
+<h2 style="margin-top:30px;">
 Peu importe les disputes,
 je choisirai toujours de me battre pour nous ❤️
 </h2>
-
+ 
 </div>
-
+ 
 <script>
-
+ 
 function showPage(num){
-
+ 
 document.querySelectorAll('.page').forEach(function(el){
 el.classList.remove('active');
 });
-
+ 
 document.getElementById('p'+num).classList.add('active');
-
+ 
 if(num===4){
 startHearts();
 }
 }
-
+ 
 document.getElementById('no').addEventListener('mouseover',function(){
-
+ 
 this.style.left=(Math.random()*80)+'vw';
 this.style.top=(Math.random()*80)+'vh';
-
+ 
 });
-
+ 
 function startHearts(){
-
+ 
 setInterval(function(){
-
+ 
 let heart=document.createElement('div');
-
+ 
 heart.className='heart';
 heart.innerHTML='❤️';
-
+ 
 heart.style.left=Math.random()*100+'vw';
 heart.style.animationDuration=(3+Math.random()*4)+'s';
-
+ 
 document.body.appendChild(heart);
-
+ 
 setTimeout(function(){
 heart.remove();
 },7000);
-
+ 
 },300);
-
+ 
 }
-
+ 
 </script>
-
+ 
 </body>
 </html>
