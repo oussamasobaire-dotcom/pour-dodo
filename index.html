@@ -10,7 +10,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+font-family:Segoe UI,sans-serif;
 }
 
 body{
@@ -20,17 +20,17 @@ overflow:hidden;
 }
 
 .screen{
-width:100%;
-height:100vh;
 display:none;
-flex-direction:column;
+height:100vh;
+width:100%;
 justify-content:center;
 align-items:center;
+flex-direction:column;
 text-align:center;
 padding:30px;
 }
 
-.active{
+.screen.active{
 display:flex;
 }
 
@@ -46,64 +46,57 @@ font-size:1.2rem;
 }
 
 .btn{
-margin-top:30px;
-padding:15px 35px;
-border:none;
-border-radius:50px;
-cursor:pointer;
-font-size:1.1rem;
-}
-
-.nextBtn{
 background:#ff4d6d;
 color:white;
-}
-
-.nextBtn:hover{
-transform:scale(1.1);
+padding:15px 35px;
+border:none;
+border-radius:40px;
+cursor:pointer;
+font-size:18px;
+margin-top:25px;
 }
 
 .buttons{
 position:relative;
 width:500px;
-height:250px;
+height:200px;
 }
 
 #yesBtn{
 background:#39d353;
 color:white;
-font-size:1.4rem;
-padding:18px 50px;
+padding:15px 40px;
 border:none;
-border-radius:50px;
+border-radius:40px;
 cursor:pointer;
+font-size:20px;
 }
 
 #noBtn{
-background:#ff4d6d;
-color:white;
 position:absolute;
 left:250px;
-top:80px;
-padding:10px 20px;
+top:0;
+background:#ff4d6d;
+color:white;
+padding:12px 25px;
 border:none;
-border-radius:50px;
+border-radius:40px;
 cursor:pointer;
 }
 
-.memory{
+.card{
 background:rgba(255,255,255,0.1);
 padding:20px;
-margin:10px;
 border-radius:20px;
+margin:10px;
 width:350px;
 }
 
 .heart{
 position:fixed;
-color:red;
-animation:fall linear infinite;
 top:-50px;
+font-size:25px;
+animation:fall linear infinite;
 }
 
 @keyframes fall{
@@ -113,19 +106,14 @@ transform:translateY(110vh);
 }
 </style>
 </head>
-
 <body>
 
 <div class="screen active" id="screen1">
-
 <h1>Dodo ❤️</h1>
-
 <p>J'ai quelque chose à te dire...</p>
-
-<button class="btn nextBtn" onclick="nextScreen(2)">
-Next ➜
+<button class="btn" onclick="showScreen(2)">
+Continuer ❤️
 </button>
-
 </div>
 
 <div class="screen" id="screen2">
@@ -135,34 +123,20 @@ Next ➜
 <p>
 Je sais que ces derniers jours n'ont pas été faciles.
 <br><br>
-
 Je suis sincèrement désolé pour ce que j'ai fait.
+<br><br>
 Je n'aime pas quand on se dispute, encore moins quand c'est avec toi.
 <br><br>
-
 Tu occupes une place énorme dans ma vie.
-Même quand je fais le fier, la vérité c'est que ton sourire, ta présence et nos moments ensemble comptent beaucoup pour moi.
 <br><br>
-
-Je ne suis pas parfait, je fais des erreurs et parfois je dis ou je fais des choses que je regrette.
+Je ne veux pas qu'une dispute efface tous nos souvenirs.
 <br><br>
-
-Mais ce que je ressens pour toi est réel.
-Et je ne veux pas qu'une dispute efface tous nos souvenirs, nos délires et tous les beaux moments qu'on a construits ensemble.
-<br><br>
-
 Aujourd'hui je veux simplement te dire pardon.
-Pardon pour ce qui t'a blessée.
 <br><br>
-
-Et si tu me laisses une chance,
-je te promets de faire mieux.
-<br><br>
-
 Je t'aime Dodo ❤️
 </p>
 
-<button class="btn nextBtn" onclick="nextScreen(3)">
+<button class="btn" onclick="showScreen(3)">
 Continuer ❤️
 </button>
 
@@ -174,7 +148,7 @@ Continuer ❤️
 
 <div class="buttons">
 
-<button id="yesBtn" onclick="showFinal()">
+<button id="yesBtn" onclick="acceptLove()">
 OUI ❤️
 </button>
 
@@ -190,30 +164,12 @@ Non
 
 <h1>Merci mon cœur ❤️</h1>
 
-<p>
-Maintenant laisse-moi te rappeler
-quelques-uns de nos plus beaux souvenirs...
-</p>
+<div class="card">😍 Le plus beau sourire du monde</div>
+<div class="card">🌩️ Stormy Together</div>
+<div class="card">✨ Toi et moi</div>
+<div class="card">👸 Ma petite fille</div>
 
-<br><br>
-
-<div class="memory">
-😍 Le plus beau sourire du monde
-</div>
-
-<div class="memory">
-🌩️ Stormy Together
-</div>
-
-<div class="memory">
-✨ Toi et moi
-</div>
-
-<div class="memory">
-👸 Ma petite fille
-</div>
-
-<h2 style="margin-top:30px;">
+<h2 style="margin-top:20px;">
 Peu importe les disputes,
 je choisirai toujours de me battre pour nous ❤️
 </h2>
@@ -222,53 +178,50 @@ je choisirai toujours de me battre pour nous ❤️
 
 <script>
 
-function nextScreen(num){
-document.querySelectorAll('.screen').forEach(screen=>{
-screen.classList.remove('active');
+function showScreen(id){
+
+document.querySelectorAll(".screen").forEach(function(screen){
+screen.classList.remove("active");
 });
 
-document.getElementById('screen'+num).classList.add('active');
+document.getElementById("screen"+id).classList.add("active");
+
 }
 
-function showFinal(){
-nextScreen(4);
-createHearts();
+function acceptLove(){
+showScreen(4);
+startHearts();
 }
 
-const noBtn=document.getElementById("noBtn");
+document.getElementById("noBtn").addEventListener("mouseover",function(){
 
-noBtn.addEventListener("mouseover",()=>{
-
-const randomX=Math.random()*400;
-const randomY=Math.random()*180;
-
-noBtn.style.left=randomX+"px";
-noBtn.style.top=randomY+"px";
+this.style.left=Math.random()*400+"px";
+this.style.top=Math.random()*150+"px";
 
 });
 
-function createHearts(){
+function startHearts(){
 
-setInterval(()=>{
+setInterval(function(){
 
-const heart=document.createElement("div");
+let heart=document.createElement("div");
 
-heart.classList.add("heart");
+heart.className="heart";
 heart.innerHTML="❤️";
 
 heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*25+15)+"px";
-heart.style.animationDuration=(Math.random()*4+3)+"s";
+heart.style.animationDuration=(3+Math.random()*3)+"s";
 
 document.body.appendChild(heart);
 
-setTimeout(()=>{
+setTimeout(function(){
 heart.remove();
-},7000);
+},6000);
 
 },300);
 
 }
+
 </script>
 
 </body>
