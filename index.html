@@ -10,7 +10,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Segoe UI,sans-serif;
+font-family:'Segoe UI',sans-serif;
 }
 
 body{
@@ -21,12 +21,11 @@ overflow:hidden;
 
 .screen{
 display:none;
-height:100vh;
-width:100%;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-flex-direction:column;
 text-align:center;
+height:100vh;
 padding:30px;
 }
 
@@ -46,14 +45,14 @@ font-size:1.2rem;
 }
 
 .btn{
-background:#ff4d6d;
-color:white;
+margin-top:30px;
 padding:15px 35px;
 border:none;
-border-radius:40px;
+border-radius:50px;
 cursor:pointer;
-font-size:18px;
-margin-top:25px;
+font-size:1.1rem;
+background:#ff4d6d;
+color:white;
 }
 
 .buttons{
@@ -65,31 +64,23 @@ height:200px;
 #yesBtn{
 background:#39d353;
 color:white;
-padding:15px 40px;
+padding:18px 50px;
 border:none;
-border-radius:40px;
+border-radius:50px;
 cursor:pointer;
-font-size:20px;
+font-size:1.3rem;
 }
 
 #noBtn{
+background:#ff4d6d;
+color:white;
 position:absolute;
 left:250px;
 top:0;
-background:#ff4d6d;
-color:white;
 padding:12px 25px;
 border:none;
-border-radius:40px;
+border-radius:50px;
 cursor:pointer;
-}
-
-.card{
-background:rgba(255,255,255,0.1);
-padding:20px;
-border-radius:20px;
-margin:10px;
-width:350px;
 }
 
 .heart{
@@ -106,14 +97,19 @@ transform:translateY(110vh);
 }
 </style>
 </head>
+
 <body>
 
 <div class="screen active" id="screen1">
+
 <h1>Dodo ❤️</h1>
+
 <p>J'ai quelque chose à te dire...</p>
+
 <button class="btn" onclick="showScreen(2)">
 Continuer ❤️
 </button>
+
 </div>
 
 <div class="screen" id="screen2">
@@ -123,16 +119,36 @@ Continuer ❤️
 <p>
 Je sais que ces derniers jours n'ont pas été faciles.
 <br><br>
+
 Je suis sincèrement désolé pour ce que j'ai fait.
-<br><br>
 Je n'aime pas quand on se dispute, encore moins quand c'est avec toi.
+
 <br><br>
+
 Tu occupes une place énorme dans ma vie.
+Même quand je fais le fier, la vérité c'est que ton sourire, ta présence et nos moments ensemble comptent beaucoup pour moi.
+
 <br><br>
-Je ne veux pas qu'une dispute efface tous nos souvenirs.
+
+Je ne suis pas parfait, je fais des erreurs et parfois je dis ou je fais des choses que je regrette.
+
 <br><br>
+
+Mais ce que je ressens pour toi est réel.
+Et je ne veux pas qu'une dispute efface tous nos souvenirs, nos délires et tous les beaux moments qu'on a construits ensemble.
+
+<br><br>
+
 Aujourd'hui je veux simplement te dire pardon.
+Pardon pour ce qui t'a blessée.
+
 <br><br>
+
+Et si tu me laisses une chance,
+je te promets de faire mieux.
+
+<br><br>
+
 Je t'aime Dodo ❤️
 </p>
 
@@ -148,7 +164,7 @@ Continuer ❤️
 
 <div class="buttons">
 
-<button id="yesBtn" onclick="acceptLove()">
+<button id="yesBtn" onclick="showScreen(4);startHearts();">
 OUI ❤️
 </button>
 
@@ -164,36 +180,34 @@ Non
 
 <h1>Merci mon cœur ❤️</h1>
 
-<div class="card">😍 Le plus beau sourire du monde</div>
-<div class="card">🌩️ Stormy Together</div>
-<div class="card">✨ Toi et moi</div>
-<div class="card">👸 Ma petite fille</div>
-
-<h2 style="margin-top:20px;">
+<p style="font-size:1.4rem;max-width:800px;">
+Je suis heureux que tu sois arrivée jusqu'ici ❤️
+<br><br>
+Merci d'avoir pris le temps de me lire.
+<br><br>
+Tu comptes énormément pour moi.
+<br><br>
 Peu importe les disputes,
 je choisirai toujours de me battre pour nous ❤️
-</h2>
+</p>
 
 </div>
 
 <script>
 
-function showScreen(id){
+function showScreen(num){
 
 document.querySelectorAll(".screen").forEach(function(screen){
 screen.classList.remove("active");
 });
 
-document.getElementById("screen"+id).classList.add("active");
+document.getElementById("screen"+num).classList.add("active");
 
 }
 
-function acceptLove(){
-showScreen(4);
-startHearts();
-}
+const noBtn=document.getElementById("noBtn");
 
-document.getElementById("noBtn").addEventListener("mouseover",function(){
+noBtn.addEventListener("mouseover",function(){
 
 this.style.left=Math.random()*400+"px";
 this.style.top=Math.random()*150+"px";
@@ -215,7 +229,9 @@ heart.style.animationDuration=(3+Math.random()*3)+"s";
 document.body.appendChild(heart);
 
 setTimeout(function(){
+
 heart.remove();
+
 },6000);
 
 },300);
