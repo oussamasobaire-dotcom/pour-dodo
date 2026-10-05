@@ -1,202 +1,260 @@
-HTML
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pour Dodo ❤️</title>
- 
+
 <style>
-body{
+
+*{
 margin:0;
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#111,#ff4d6d);
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f0f0f,#1f1f1f,#ff4d6d);
 color:white;
-text-align:center;
 overflow:hidden;
 }
- 
-.page{
+
+.screen{
 display:none;
+width:100%;
 height:100vh;
-padding:40px;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-flex-direction:column;
+text-align:center;
+padding:30px;
 }
- 
+
 .active{
 display:flex;
 }
- 
+
+h1{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+p{
+max-width:800px;
+line-height:1.8;
+font-size:1.2rem;
+}
+
 button{
-padding:15px 30px;
+padding:15px 35px;
 border:none;
-border-radius:30px;
-font-size:18px;
+border-radius:50px;
 cursor:pointer;
+font-size:1.1rem;
 margin-top:20px;
 }
- 
-.next{
+
+.nextBtn{
 background:#ff4d6d;
 color:white;
 }
- 
-#yes{
+
+#yesBtn{
 background:#39d353;
 color:white;
+font-size:1.3rem;
 }
- 
-#no{
+
+#noBtn{
 background:#ff4d6d;
 color:white;
 position:absolute;
 }
- 
+
+.buttons{
+position:relative;
+width:500px;
+height:250px;
+}
+
 .memory{
 background:rgba(255,255,255,0.1);
 padding:20px;
 border-radius:20px;
 margin:10px;
-max-width:500px;
+width:320px;
 }
- 
+
 .heart{
 position:fixed;
-top:-20px;
-font-size:25px;
+top:-50px;
+color:red;
 animation:fall linear infinite;
 }
- 
+
 @keyframes fall{
 to{
 transform:translateY(110vh);
 }
 }
+
 </style>
 </head>
- 
+
 <body>
- 
-<div class="page active" id="p1">
+
+<div class="screen active" id="screen1">
+
 <h1>Dodo ❤️</h1>
+
 <p>J'ai quelque chose à te dire...</p>
-<button class="next" onclick="showPage(2)">
+
+<button class="nextBtn" onclick="nextScreen(2)">
 Continuer ❤️
 </button>
+
 </div>
- 
-<div class="page" id="p2">
+
+<div class="screen" id="screen2">
+
 <h1>Mon cœur ❤️</h1>
- 
-<p style="max-width:700px;line-height:1.8;">
+
+<p>
 Je sais que ces derniers jours n'ont pas été faciles.
 <br><br>
+
 Je suis sincèrement désolé pour ce que j'ai fait.
-<br><br>
 Je n'aime pas quand on se dispute, encore moins quand c'est avec toi.
 <br><br>
-Tu comptes énormément pour moi.
+
+Tu occupes une place énorme dans ma vie.
 <br><br>
+
+Je ne suis pas parfait, je fais des erreurs et parfois je dis ou je fais des choses que je regrette.
+<br><br>
+
+Mais ce que je ressens pour toi est réel.
+<br><br>
+
 Aujourd'hui je veux simplement te dire pardon.
 <br><br>
+
+Et si tu me laisses une chance,
+je te promets de faire mieux.
+<br><br>
+
 Je t'aime Dodo ❤️
 </p>
- 
-<button class="next" onclick="showPage(3)">
+
+<button class="nextBtn" onclick="nextScreen(3)">
 Continuer ❤️
 </button>
+
 </div>
- 
-<div class="page" id="p3">
- 
+
+<div class="screen" id="screen3">
+
 <h1>Est-ce que tu acceptes mes excuses ? 🥺❤️</h1>
- 
-<button id="yes" onclick="showPage(4)">
+
+<div class="buttons">
+
+<button id="yesBtn" onclick="showFinal()">
 OUI ❤️
 </button>
- 
-<button id="no">
+
+<button id="noBtn">
 Non
 </button>
- 
+
 </div>
- 
-<div class="page" id="p4">
- 
+
+</div>
+
+<div class="screen" id="screen4">
+
 <h1>Merci mon cœur ❤️</h1>
- 
+
 <p>Quelques-uns de nos plus beaux souvenirs...</p>
- 
+
 <div class="memory">
 😍 Le plus beau sourire du monde
 </div>
- 
+
 <div class="memory">
 🌩️ Stormy Together
 </div>
- 
+
 <div class="memory">
 ✨ Toi et moi
 </div>
- 
+
 <div class="memory">
 👸 Ma petite fille
 </div>
- 
-<h2>
+
+<h2 style="margin-top:30px;">
 Peu importe les disputes,
 je choisirai toujours de me battre pour nous ❤️
 </h2>
- 
+
 </div>
- 
+
 <script>
- 
-function showPage(num){
- 
-document.querySelectorAll('.page').forEach(function(el){
-el.classList.remove('active');
+
+function nextScreen(num){
+
+document.querySelectorAll('.screen').forEach(screen=>{
+screen.classList.remove('active');
 });
- 
-document.getElementById('p'+num).classList.add('active');
- 
-if(num===4){
-startHearts();
+
+document.getElementById('screen'+num).classList.add('active');
+
 }
+
+function showFinal(){
+
+nextScreen(4);
+createHearts();
+
 }
- 
-document.getElementById('no').addEventListener('mouseover',function(){
- 
-this.style.left=(Math.random()*80)+'vw';
-this.style.top=(Math.random()*80)+'vh';
- 
+
+const noBtn=document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover",()=>{
+
+const x=Math.random()*400;
+const y=Math.random()*180;
+
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+
 });
- 
-function startHearts(){
- 
-setInterval(function(){
- 
-let heart=document.createElement('div');
- 
-heart.className='heart';
-heart.innerHTML='❤️';
- 
-heart.style.left=Math.random()*100+'vw';
-heart.style.animationDuration=(3+Math.random()*4)+'s';
- 
+
+function createHearts(){
+
+setInterval(()=>{
+
+const heart=document.createElement("div");
+
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*25+15)+"px";
+heart.style.animationDuration=(Math.random()*4+3)+"s";
+
 document.body.appendChild(heart);
- 
-setTimeout(function(){
+
+setTimeout(()=>{
 heart.remove();
 },7000);
- 
+
 },300);
- 
+
 }
- 
+
 </script>
- 
+
 </body>
 </html>
